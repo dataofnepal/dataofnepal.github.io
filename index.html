@@ -1,835 +1,336 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Data of Nepal — Numbers from the Roof of the World</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=DM+Mono:wght@400;500&family=Tiro+Devanagari+Sanskrit&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --crimson: #DC143C;
-    --deep-red: #9B1B30;
-    --saffron: #E8A33D;
-    --ink: #1c84c6;
-    --paper: #fff;
-    --paper-dark: #EDE6D3;
-    --mist: #C8B89A;
-    --sky: #6B8AA8;
-    --line: rgba(26, 26, 26, 0.15);
-  }
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  html, body {
-    background: var(--paper);
-    color: var(--ink);
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 18px;
-    line-height: 1.5;
-    overflow-x: hidden;
-  }
+    <title>Data Of Nepal</title>
 
-  /* Subtle paper grain */
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    background-image:
-      radial-gradient(circle at 20% 30%, rgba(155, 27, 48, 0.04), transparent 50%),
-      radial-gradient(circle at 80% 70%, rgba(232, 163, 61, 0.05), transparent 50%);
-    z-index: 1;
-  }
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
 
-  body::after {
-    content: '';
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3CfeColorMatrix values='0 0 0 0 0.1 0 0 0 0 0.1 0 0 0 0 0.1 0 0 0 0.04 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-    z-index: 2;
-    opacity: 0.6;
-  }
+    <link href="css/animate.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
 
-  .container {
-    position: relative;
-    z-index: 3;
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 0 40px;
-  }
-
-  /* HEADER */
-  header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 28px 0;
-    border-bottom: 1px solid var(--line);
-  }
-
-  .logo {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    font-family: 'Cormorant Garamond', serif;
-    font-weight: 600;
-    font-size: 22px;
-    letter-spacing: 0.02em;
-  }
-
-  .logo-mark {
-    width: 32px;
-    height: 38px;
-    flex-shrink: 0;
-  }
-
-  nav ul {
-    list-style: none;
-    display: flex;
-    gap: 36px;
-    font-family: 'DM Mono', monospace;
-    font-size: 12px;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-  }
-
-  nav a {
-    color: var(--ink);
-    text-decoration: none;
-    position: relative;
-    padding: 4px 0;
-    transition: color 0.3s;
-  }
-
-  nav a::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 0;
-    height: 1px;
-    background: var(--crimson);
-    transition: width 0.4s ease;
-  }
-
-  nav a:hover { color: var(--crimson); }
-  nav a:hover::after { width: 100%; }
-
-  /* HERO */
-  .hero {
-    padding: 80px 0 100px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 60px;
-    align-items: center;
-    position: relative;
-  }
-
-  .eyebrow {
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: var(--deep-red);
-    margin-bottom: 32px;
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    opacity: 0;
-    animation: fadeUp 0.8s 0.1s forwards;
-  }
-
-  .eyebrow::before {
-    content: '';
-    width: 40px;
-    height: 1px;
-    background: var(--deep-red);
-  }
-
-  .devanagari {
-    font-family: 'Tiro Devanagari Sanskrit', serif;
-    font-size: 24px;
-    color: var(--deep-red);
-    margin-bottom: 16px;
-    opacity: 0;
-    animation: fadeUp 0.8s 0.2s forwards;
-  }
-
-  h1 {
-    font-family: 'Cormorant Garamond', serif;
-    font-weight: 500;
-    font-size: clamp(48px, 6.2vw, 92px);
-    line-height: 0.95;
-    letter-spacing: -0.02em;
-    margin-bottom: 32px;
-    opacity: 0;
-    animation: fadeUp 0.9s 0.3s forwards;
-  }
-
-  h1 em {
-    font-style: italic;
-    font-weight: 400;
-    color: var(--crimson);
-    position: relative;
-  }
-
-  h1 em::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: 8px;
-    width: 100%;
-    height: 8px;
-    background: var(--saffron);
-    opacity: 0.35;
-    z-index: -1;
-  }
-
-  .hero-text {
-    font-size: 20px;
-    line-height: 1.55;
-    color: rgba(26, 26, 26, 0.75);
-    max-width: 460px;
-    margin-bottom: 40px;
-    opacity: 0;
-    animation: fadeUp 0.9s 0.45s forwards;
-  }
-
-  .cta-row {
-    display: flex;
-    gap: 20px;
-    align-items: center;
-    opacity: 0;
-    animation: fadeUp 0.9s 0.6s forwards;
-  }
-
-  .btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    padding: 16px 28px;
-    background: var(--ink);
-    color: var(--paper);
-    text-decoration: none;
-    font-family: 'DM Mono', monospace;
-    font-size: 12px;
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-    border: 1px solid var(--ink);
-    transition: all 0.3s ease;
-  }
-
-  .btn:hover {
-    background: var(--crimson);
-    border-color: var(--crimson);
-    transform: translateY(-2px);
-  }
-
-  .btn-ghost {
-    background: transparent;
-    color: var(--ink);
-  }
-
-  .btn-ghost:hover {
-    background: var(--ink);
-    color: var(--paper);
-  }
-
-  /* HERO ILLUSTRATION */
-  .hero-visual {
-    position: relative;
-    height: 540px;
-    opacity: 0;
-    animation: fadeIn 1.2s 0.4s forwards;
-  }
-
-  .mountains {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-  }
-
-  .data-card {
-    position: absolute;
-    background: var(--paper);
-    border: 1px solid var(--ink);
-    padding: 16px 20px;
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    line-height: 1.4;
-    box-shadow: 6px 6px 0 var(--ink);
-  }
-
-  .data-card .num {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 36px;
-    font-weight: 500;
-    color: var(--crimson);
-    display: block;
-    line-height: 1;
-    margin-bottom: 6px;
-  }
-
-  .data-card .label {
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: rgba(26, 26, 26, 0.65);
-  }
-
-  .card-1 { top: 40px; right: 20px; animation: float 6s ease-in-out infinite; }
-  .card-2 { top: 220px; left: 0; animation: float 7s ease-in-out infinite 1s; }
-  .card-3 { bottom: 60px; right: 60px; animation: float 8s ease-in-out infinite 0.5s; }
-
-  @keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
-  }
-
-  /* TICKER */
-  .ticker {
-    border-top: 1px solid var(--line);
-    border-bottom: 1px solid var(--line);
-    padding: 20px 0;
-    overflow: hidden;
-    background: var(--paper-dark);
-    margin: 0 -100vw;
-    padding-left: calc(50vw - 640px);
-    padding-right: calc(50vw - 640px);
-  }
-
-  .ticker-track {
-    display: flex;
-    gap: 80px;
-    white-space: nowrap;
-    animation: scroll 40s linear infinite;
-    font-family: 'DM Mono', monospace;
-    font-size: 12px;
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-  }
-
-  .ticker-item {
-    display: inline-flex;
-    align-items: center;
-    gap: 14px;
-    color: var(--ink);
-  }
-
-  .ticker-item .dot {
-    width: 6px;
-    height: 6px;
-    background: var(--crimson);
-    border-radius: 50%;
-  }
-
-  .ticker-item strong {
-    color: var(--deep-red);
-    font-weight: 500;
-  }
-
-  @keyframes scroll {
-    from { transform: translateX(0); }
-    to { transform: translateX(-50%); }
-  }
-
-  /* SECTIONS */
-  section {
-    padding: 100px 0;
-    border-bottom: 1px solid var(--line);
-  }
-
-  .section-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    margin-bottom: 60px;
-    gap: 40px;
-  }
-
-  .section-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 48px;
-    font-weight: 500;
-    line-height: 1.05;
-    letter-spacing: -0.01em;
-    max-width: 600px;
-  }
-
-  .section-title em {
-    font-style: italic;
-    color: var(--crimson);
-  }
-
-  .section-num {
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: rgba(26, 26, 26, 0.55);
-  }
-
-  /* DATASETS GRID */
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 0;
-    border-top: 1px solid var(--line);
-    border-left: 1px solid var(--line);
-  }
-
-  .card {
-    border-right: 1px solid var(--line);
-    border-bottom: 1px solid var(--line);
-    padding: 36px 32px;
-    transition: background 0.4s ease;
-    cursor: pointer;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .card:hover {
-    background: var(--paper-dark);
-  }
-
-  .card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 0;
-    height: 3px;
-    background: var(--crimson);
-    transition: width 0.4s ease;
-  }
-
-  .card:hover::before { width: 100%; }
-
-  .card-icon {
-    width: 44px;
-    height: 44px;
-    margin-bottom: 28px;
-    color: var(--deep-red);
-  }
-
-  .card-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 26px;
-    font-weight: 500;
-    margin-bottom: 12px;
-    letter-spacing: -0.01em;
-  }
-
-  .card-desc {
-    font-size: 16px;
-    color: rgba(26, 26, 26, 0.7);
-    line-height: 1.5;
-    margin-bottom: 24px;
-  }
-
-  .card-meta {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--ink);
-    display: flex;
-    justify-content: space-between;
-    padding-top: 20px;
-    border-top: 1px dashed var(--line);
-  }
-
-  .card-meta .arrow {
-    transition: transform 0.3s ease;
-  }
-
-  .card:hover .arrow { transform: translateX(6px); }
-
-  /* ABOUT BLOCK */
-  .about {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 80px;
-    align-items: start;
-  }
-
-  .about-quote {
-    font-family: 'Cormorant Garamond', serif;
-    font-style: italic;
-    font-size: 32px;
-    line-height: 1.3;
-    color: var(--ink);
-    position: relative;
-    padding-left: 40px;
-  }
-
-  .about-quote::before {
-    content: '"';
-    position: absolute;
-    left: -10px;
-    top: -30px;
-    font-size: 120px;
-    color: var(--crimson);
-    font-family: 'Cormorant Garamond', serif;
-    line-height: 1;
-  }
-
-  .about-text p {
-    font-size: 18px;
-    line-height: 1.7;
-    color: rgba(26, 26, 26, 0.8);
-    margin-bottom: 20px;
-  }
-
-  /* FOOTER */
-  footer {
-    padding: 60px 0 40px;
-    background: var(--ink);
-    color: var(--paper);
-    margin-top: 0;
-    position: relative;
-    z-index: 3;
-  }
-
-  footer .container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 30px;
-  }
-
-  footer .logo { color: var(--paper); }
-
-  .footer-meta {
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: rgba(245, 241, 232, 0.6);
-  }
-
-  .social {
-    display: flex;
-    gap: 20px;
-    list-style: none;
-  }
-
-  .social a {
-    color: var(--paper);
-    text-decoration: none;
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    transition: color 0.3s;
-  }
-
-  .social a:hover { color: var(--saffron); }
-
-  /* ANIMATIONS */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-  }
-
-  /* RESPONSIVE */
-  @media (max-width: 900px) {
-    .container { padding: 0 24px; }
-    .hero {
-      grid-template-columns: 1fr;
-      padding: 60px 0;
-    }
-    .hero-visual { height: 380px; order: -1; }
-    nav ul { gap: 20px; }
-    nav ul li:nth-child(n+3) { display: none; }
-    .grid { grid-template-columns: 1fr; }
-    .about { grid-template-columns: 1fr; gap: 40px; }
-    .section-header { flex-direction: column; align-items: flex-start; }
-    .section-title { font-size: 36px; }
-    .ticker {
-      margin: 0 -24px;
-      padding-left: 24px;
-      padding-right: 24px;
-    }
-  }
-</style>
 </head>
+
 <body>
+    <div id="wrapper">
+    <nav class="navbar-default navbar-static-side" role="navigation">
+        <div class="sidebar-collapse">
+            <ul class="nav metismenu" id="side-menu">
+                <!--<li class="nav-header">
+                    <div class="dropdown profile-element">
+                        <img alt="image" class="rounded-circle" src="img/profile_small.jpg"/>
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                            <span class="block m-t-xs font-bold">David Williams</span>
+                            <span class="text-muted text-xs block">Art Director <b class="caret"></b></span>
+                        </a>
+                        <ul class="dropdown-menu animated fadeInRight m-t-xs">
+                            <li><a class="dropdown-item" href="profile.html">Profile</a></li>
+                            <li><a class="dropdown-item" href="contacts.html">Contacts</a></li>
+                            <li><a class="dropdown-item" href="mailbox.html">Mailbox</a></li>
+                            <li class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="login.html">Logout</a></li>
+                        </ul>
+                    </div>
+                    <div class="logo-element">
+                        DON
+                    </div>
+                </li>-->
+                <li class="active">
+                    <a href="index.html"><i class="fa fa-th-large"></i> <span class="nav-label">Dashboards</span> <span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li class="active"><a href="dashboard_2.html">Dashboard V.1</a></li>
+                    </ul>
+                </li>
+            </ul>
 
-<div class="container">
-  <header>
-    <div class="logo">
-      <svg class="logo-mark" viewBox="0 0 32 38" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <!-- Stylized double-pennant Nepal flag silhouette -->
-        <path d="M2 2 L2 36 L4 36 L4 22 L26 12 L4 2 Z" fill="#DC143C" stroke="#1A1A1A" stroke-width="1.5" stroke-linejoin="round"/>
-        <path d="M4 2 L26 12 L4 22 Z" fill="#DC143C" stroke="#1A1A1A" stroke-width="1.5" stroke-linejoin="round"/>
-        <circle cx="11" cy="7" r="1.5" fill="#F5F1E8"/>
-        <circle cx="11" cy="17" r="1.5" fill="#F5F1E8"/>
-      </svg>
-      <span>Data of Nepal</span>
-    </div>
-    <nav>
-      <ul>
-        <li><a href="#datasets">Datasets</a></li>
-        <li><a href="#stories">Stories</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
+        </div>
     </nav>
-  </header>
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="hero-content">
-      <div class="eyebrow">Est. 2026 — Kathmandu</div>
-      <div class="devanagari">नेपालको तथ्याङ्क</div>
-      <h1>Numbers from the <em>roof</em> of the world.</h1>
-      <p class="hero-text">
-        An open archive of Nepal's data — from the census of its 125 ethnic groups to the snowmelt of its eight-thousanders. Built for journalists, researchers, and the curious.
-      </p>
-      <div class="cta-row">
-        <a href="#datasets" class="btn">Explore Datasets →</a>
-        <a href="#about" class="btn btn-ghost">Read the manifesto</a>
-      </div>
-    </div>
+        <div id="page-wrapper" class="gray-bg">
+        <div class="row border-bottom">
 
-    <div class="hero-visual">
-      <!-- Himalayan range SVG -->
-      <svg class="mountains" viewBox="0 0 600 540" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
-        <!-- Sky gradient -->
-        <defs>
-          <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="#EDE6D3"/>
-            <stop offset="100%" stop-color="#F5F1E8"/>
-          </linearGradient>
-          <linearGradient id="mtnFar" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="#C8B89A"/>
-            <stop offset="100%" stop-color="#B8A684"/>
-          </linearGradient>
-          <linearGradient id="mtnMid" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="#9B1B30"/>
-            <stop offset="100%" stop-color="#7A1525"/>
-          </linearGradient>
-          <linearGradient id="mtnNear" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="#1A1A1A"/>
-            <stop offset="100%" stop-color="#2A2A2A"/>
-          </linearGradient>
-        </defs>
-
-        <rect width="600" height="540" fill="url(#sky)"/>
-
-        <!-- Sun -->
-        <circle cx="450" cy="130" r="50" fill="#E8A33D" opacity="0.85"/>
-        <circle cx="450" cy="130" r="70" fill="#E8A33D" opacity="0.15"/>
-
-        <!-- Far mountains -->
-        <path d="M0 320 L80 220 L140 280 L220 180 L300 260 L380 200 L460 270 L540 220 L600 280 L600 540 L0 540 Z" fill="url(#mtnFar)" opacity="0.7"/>
-
-        <!-- Mid mountains with snow caps -->
-        <path d="M0 380 L70 290 L130 340 L200 250 L280 330 L360 270 L440 340 L520 290 L600 340 L600 540 L0 540 Z" fill="url(#mtnMid)"/>
-        <!-- Snow caps -->
-        <path d="M55 310 L70 290 L85 310 L80 315 L75 312 L70 318 L65 312 Z" fill="#F5F1E8"/>
-        <path d="M185 270 L200 250 L215 270 L210 275 L205 272 L200 278 L195 272 Z" fill="#F5F1E8"/>
-        <path d="M345 290 L360 270 L375 290 L370 295 L365 292 L360 298 L355 292 Z" fill="#F5F1E8"/>
-        <path d="M505 310 L520 290 L535 310 L530 315 L525 312 L520 318 L515 312 Z" fill="#F5F1E8"/>
-
-        <!-- Near mountains -->
-        <path d="M0 460 L100 380 L180 430 L280 360 L380 420 L500 370 L600 410 L600 540 L0 540 Z" fill="url(#mtnNear)"/>
-
-        <!-- Decorative crosshatch lines (data-vis feel) -->
-        <g stroke="#1A1A1A" stroke-width="0.4" opacity="0.25">
-          <line x1="0" y1="100" x2="600" y2="100"/>
-          <line x1="0" y1="160" x2="600" y2="160"/>
-          <line x1="0" y1="60" x2="600" y2="60"/>
-        </g>
-
-        <!-- Tiny prayer flags string -->
-        <line x1="40" y1="80" x2="280" y2="50" stroke="#1A1A1A" stroke-width="0.6"/>
-        <polygon points="80,76 80,90 86,84" fill="#DC143C"/>
-        <polygon points="120,72 120,86 126,80" fill="#E8A33D"/>
-        <polygon points="160,68 160,82 166,76" fill="#6B8AA8"/>
-        <polygon points="200,62 200,76 206,70" fill="#F5F1E8" stroke="#1A1A1A" stroke-width="0.4"/>
-        <polygon points="240,56 240,70 246,64" fill="#9B1B30"/>
-      </svg>
-
-      <!-- Floating data cards -->
-      <div class="data-card card-1">
-        <span class="num">8,848.86</span>
-        <span class="label">m · Sagarmatha</span>
-      </div>
-      <div class="data-card card-2">
-        <span class="num">29.16M</span>
-        <span class="label">Population · 2021</span>
-      </div>
-      <div class="data-card card-3">
-        <span class="num">125</span>
-        <span class="label">Ethnic Groups</span>
-      </div>
-    </div>
-  </section>
-</div>
-
-<!-- TICKER -->
-<div class="ticker">
-  <div class="ticker-track">
-    <span class="ticker-item"><span class="dot"></span>GDP per capita <strong>$1,381</strong></span>
-    <span class="ticker-item"><span class="dot"></span>Literacy rate <strong>76.2%</strong></span>
-    <span class="ticker-item"><span class="dot"></span>Forest cover <strong>41.7%</strong></span>
-    <span class="ticker-item"><span class="dot"></span>Languages spoken <strong>123</strong></span>
-    <span class="ticker-item"><span class="dot"></span>UNESCO sites <strong>10</strong></span>
-    <span class="ticker-item"><span class="dot"></span>Provinces <strong>7</strong></span>
-    <span class="ticker-item"><span class="dot"></span>Districts <strong>77</strong></span>
-    <!-- duplicate for seamless loop -->
-    <span class="ticker-item"><span class="dot"></span>GDP per capita <strong>$1,381</strong></span>
-    <span class="ticker-item"><span class="dot"></span>Literacy rate <strong>76.2%</strong></span>
-    <span class="ticker-item"><span class="dot"></span>Forest cover <strong>41.7%</strong></span>
-    <span class="ticker-item"><span class="dot"></span>Languages spoken <strong>123</strong></span>
-    <span class="ticker-item"><span class="dot"></span>UNESCO sites <strong>10</strong></span>
-    <span class="ticker-item"><span class="dot"></span>Provinces <strong>7</strong></span>
-    <span class="ticker-item"><span class="dot"></span>Districts <strong>77</strong></span>
-  </div>
-</div>
-
-<div class="container">
-  <!-- DATASETS -->
-  <section id="datasets">
-    <div class="section-header">
-      <h2 class="section-title">Browse the <em>archive</em>, one dataset at a time.</h2>
-      <span class="section-num">§ 01 / Datasets</span>
-    </div>
-
-    <div class="grid">
-      <article class="card">
-        <svg class="card-icon" viewBox="0 0 44 44" fill="none">
-          <path d="M4 36 L14 22 L22 30 L32 14 L40 22" stroke="currentColor" stroke-width="2" fill="none"/>
-          <line x1="4" y1="40" x2="40" y2="40" stroke="currentColor" stroke-width="2"/>
-          <circle cx="32" cy="14" r="2" fill="currentColor"/>
-        </svg>
-        <h3 class="card-title">Economy & Trade</h3>
-        <p class="card-desc">GDP, remittances, tourism revenue, and trade flows from Kathmandu Valley to the Terai plains.</p>
-        <div class="card-meta">
-          <span>248 datasets</span>
-          <span class="arrow">→</span>
         </div>
-      </article>
-
-      <article class="card">
-        <svg class="card-icon" viewBox="0 0 44 44" fill="none">
-          <circle cx="22" cy="16" r="6" stroke="currentColor" stroke-width="2"/>
-          <path d="M10 38 C10 30, 16 26, 22 26 C28 26, 34 30, 34 38" stroke="currentColor" stroke-width="2"/>
-        </svg>
-        <h3 class="card-title">People & Census</h3>
-        <p class="card-desc">29 million stories — demographics, migration, language, and the rich diversity of Nepali society.</p>
-        <div class="card-meta">
-          <span>132 datasets</span>
-          <span class="arrow">→</span>
+            <div class="wrapper wrapper-content">
+        <div class="row">
+                    <div class="col-lg-3">
+                        <div class="ibox ">
+                            <div class="ibox-title">
+                                <div class="ibox-tools">
+                                    <span class="label label-success float-right">Yearly</span>
+                                </div>
+                                <h5>GDP - 2026 - IMF</h5>
+                            </div>
+                            <div class="ibox-content">
+                                <h1 class="no-margins">$45.84 billion</h1>
+                                <div class="stat-percent font-bold text-success">2.96% <i class="fa fa-level-up"></i></div>
+                                <small>GDP per Capita $1,548</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="ibox ">
+                            <div class="ibox-title">
+                                <div class="ibox-tools">
+                                    <span class="label label-info float-right">Yearly</span>
+                                </div>
+                                <h5>Population - 2026</h5>
+                            </div>
+                            <div class="ibox-content">
+                                <h1 class="no-margins">29,629,410</h1>
+                                <div class="stat-percent font-bold text-info">0.04% <i class="fa fa-level-up"></i></div>
+                                <small>Density 207 (P/Km²)</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="ibox ">
+                            <div class="ibox-title">
+                                <div class="ibox-tools">
+                                    <span class="label label-primary float-right">Fiscal Year</span>
+                                </div>
+                                <h5>Electricity - Mid 2025</h5>
+                            </div>
+                            <div class="ibox-content">
+                                <h1 class="no-margins"> 3,878 MW </h1>
+                                <div class="stat-percent font-bold text-navy">15.65% <i class="fa fa-level-up"></i></div>
+                                <small>Max Daily Export 1,000 MW</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="ibox ">
+                            <div class="ibox-title">
+                                <div class="ibox-tools">
+                                    <span class="label label-danger float-right">10 Years</span>
+                                </div>
+                                <h5>Life Expectancy - 2021</h5>
+                            </div>
+                            <div class="ibox-content">
+                                <h1 class="no-margins">71.3 years</h1>
+                                <div class="stat-percent font-bold text-navy">+4.7 years <i class="fa fa-level-up"></i></div>
+                                <small>Estimated 73.26 years in 2026</small>
+                            </div>
+                        </div>
+            </div>
         </div>
-      </article>
-
-      <article class="card">
-        <svg class="card-icon" viewBox="0 0 44 44" fill="none">
-          <path d="M6 32 L14 18 L22 26 L30 12 L38 22 L38 32 Z" stroke="currentColor" stroke-width="2" fill="none"/>
-          <circle cx="14" cy="18" r="1.5" fill="currentColor"/>
-          <circle cx="30" cy="12" r="1.5" fill="currentColor"/>
-        </svg>
-        <h3 class="card-title">Geography & Climate</h3>
-        <p class="card-desc">From the Himalayas to the Indo-Gangetic plain — terrain, rivers, glaciers, and weather patterns.</p>
-        <div class="card-meta">
-          <span>89 datasets</span>
-          <span class="arrow">→</span>
+        <div class="footer">
+            <div class="float-right">
+                This is based on our own research. It's not official.
+            </div>
+            <div>
+                <strong>Copyright</strong> Data Of Nepal &copy; 2026
+            </div>
         </div>
-      </article>
-
-      <article class="card">
-        <svg class="card-icon" viewBox="0 0 44 44" fill="none">
-          <rect x="8" y="14" width="28" height="22" stroke="currentColor" stroke-width="2"/>
-          <path d="M14 14 L14 8 L30 8 L30 14" stroke="currentColor" stroke-width="2"/>
-          <line x1="14" y1="22" x2="30" y2="22" stroke="currentColor" stroke-width="2"/>
-          <line x1="14" y1="28" x2="24" y2="28" stroke="currentColor" stroke-width="2"/>
-        </svg>
-        <h3 class="card-title">Education</h3>
-        <p class="card-desc">School enrollment, literacy by district, university statistics, and outcomes across all seven provinces.</p>
-        <div class="card-meta">
-          <span>67 datasets</span>
-          <span class="arrow">→</span>
         </div>
-      </article>
-
-      <article class="card">
-        <svg class="card-icon" viewBox="0 0 44 44" fill="none">
-          <path d="M22 36 C12 28, 6 22, 6 16 C6 10, 12 6, 16 8 C18 9, 20 12, 22 14 C24 12, 26 9, 28 8 C32 6, 38 10, 38 16 C38 22, 32 28, 22 36 Z" stroke="currentColor" stroke-width="2" fill="none"/>
-        </svg>
-        <h3 class="card-title">Health & Wellbeing</h3>
-        <p class="card-desc">Life expectancy, hospital coverage, maternal health, and the public health story of modern Nepal.</p>
-        <div class="card-meta">
-          <span>104 datasets</span>
-          <span class="arrow">→</span>
-        </div>
-      </article>
-
-      <article class="card">
-        <svg class="card-icon" viewBox="0 0 44 44" fill="none">
-          <path d="M22 6 L26 14 L34 14 L28 20 L30 28 L22 24 L14 28 L16 20 L10 14 L18 14 Z" stroke="currentColor" stroke-width="2" fill="none"/>
-          <line x1="22" y1="32" x2="22" y2="40" stroke="currentColor" stroke-width="2"/>
-        </svg>
-        <h3 class="card-title">Culture & Heritage</h3>
-        <p class="card-desc">Festivals, temples, UNESCO sites, traditional crafts — the living cultural fabric quantified.</p>
-        <div class="card-meta">
-          <span>54 datasets</span>
-          <span class="arrow">→</span>
-        </div>
-      </article>
-    </div>
-  </section>
-
-  <!-- ABOUT -->
-  <section id="about">
-    <div class="section-header">
-      <h2 class="section-title">A small <em>archive</em> with a wide horizon.</h2>
-      <span class="section-num">§ 02 / About</span>
     </div>
 
-    <div class="about">
-      <div class="about-quote">
-        Data is a kind of cartography — a way of mapping the country we cannot walk in a single lifetime.
-      </div>
-      <div class="about-text">
-        <p>Data of Nepal is an independent open-data project. We collect, clean, and publish public datasets about Nepal — sourced from government surveys, academic research, NGOs, and citizen science.</p>
-        <p>Every dataset is free to download under a Creative Commons license, with full provenance and methodology. We believe good data should be as accessible as a mountain trail — clearly marked, well maintained, and open to whoever shows up.</p>
-        <p>Built quietly in Kathmandu. Released to the world.</p>
-      </div>
-    </div>
-  </section>
-</div>
+    <!-- Mainly scripts -->
+    <script src="js/jquery-3.1.1.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
 
-<!-- FOOTER -->
-<footer id="contact">
-  <div class="container">
-    <div class="logo">
-      <svg class="logo-mark" viewBox="0 0 32 38" fill="none">
-        <path d="M2 2 L2 36 L4 36 L4 22 L26 12 L4 2 Z" fill="#DC143C" stroke="#F5F1E8" stroke-width="1.5" stroke-linejoin="round"/>
-        <path d="M4 2 L26 12 L4 22 Z" fill="#DC143C" stroke="#F5F1E8" stroke-width="1.5" stroke-linejoin="round"/>
-      </svg>
-      <span>Data of Nepal</span>
-    </div>
-    <ul class="social">
-      <li><a href="#">GitHub</a></li>
-      <li><a href="#">Twitter</a></li>
-      <li><a href="#">RSS</a></li>
-      <li><a href="#">hello@dataofnepal.org</a></li>
-    </ul>
-    <div class="footer-meta">© 2026 · Kathmandu, Nepal</div>
-  </div>
-</footer>
+    <!-- Flot -->
+    <script src="js/plugins/flot/jquery.flot.js"></script>
+    <script src="js/plugins/flot/jquery.flot.tooltip.min.js"></script>
+    <script src="js/plugins/flot/jquery.flot.spline.js"></script>
+    <script src="js/plugins/flot/jquery.flot.resize.js"></script>
+    <script src="js/plugins/flot/jquery.flot.pie.js"></script>
+    <script src="js/plugins/flot/jquery.flot.symbol.js"></script>
+    <script src="js/plugins/flot/jquery.flot.time.js"></script>
 
+    <!-- Peity -->
+    <script src="js/plugins/peity/jquery.peity.min.js"></script>
+    <script src="js/demo/peity-demo.js"></script>
+
+    <!-- Custom and plugin javascript -->
+    <script src="js/inspinia.js"></script>
+    <script src="js/plugins/pace/pace.min.js"></script>
+
+    <!-- jQuery UI -->
+    <script src="js/plugins/jquery-ui/jquery-ui.min.js"></script>
+
+    <!-- Jvectormap -->
+    <script src="js/plugins/jvectormap/jquery-jvectormap-2.0.2.min.js"></script>
+    <script src="js/plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
+
+    <!-- EayPIE -->
+    <script src="js/plugins/easypiechart/jquery.easypiechart.js"></script>
+
+    <!-- Sparkline -->
+    <script src="js/plugins/sparkline/jquery.sparkline.min.js"></script>
+
+    <!-- Sparkline demo data  -->
+    <script src="js/demo/sparkline-demo.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('.chart').easyPieChart({
+                barColor: '#f8ac59',
+//                scaleColor: false,
+                scaleLength: 5,
+                lineWidth: 4,
+                size: 80
+            });
+
+            $('.chart2').easyPieChart({
+                barColor: '#1c84c6',
+//                scaleColor: false,
+                scaleLength: 5,
+                lineWidth: 4,
+                size: 80
+            });
+
+            var data2 = [
+                [gd(2012, 1, 1), 7], [gd(2012, 1, 2), 6], [gd(2012, 1, 3), 4], [gd(2012, 1, 4), 8],
+                [gd(2012, 1, 5), 9], [gd(2012, 1, 6), 7], [gd(2012, 1, 7), 5], [gd(2012, 1, 8), 4],
+                [gd(2012, 1, 9), 7], [gd(2012, 1, 10), 8], [gd(2012, 1, 11), 9], [gd(2012, 1, 12), 6],
+                [gd(2012, 1, 13), 4], [gd(2012, 1, 14), 5], [gd(2012, 1, 15), 11], [gd(2012, 1, 16), 8],
+                [gd(2012, 1, 17), 8], [gd(2012, 1, 18), 11], [gd(2012, 1, 19), 11], [gd(2012, 1, 20), 6],
+                [gd(2012, 1, 21), 6], [gd(2012, 1, 22), 8], [gd(2012, 1, 23), 11], [gd(2012, 1, 24), 13],
+                [gd(2012, 1, 25), 7], [gd(2012, 1, 26), 9], [gd(2012, 1, 27), 9], [gd(2012, 1, 28), 8],
+                [gd(2012, 1, 29), 5], [gd(2012, 1, 30), 8], [gd(2012, 1, 31), 25]
+            ];
+
+            var data3 = [
+                [gd(2012, 1, 1), 800], [gd(2012, 1, 2), 500], [gd(2012, 1, 3), 600], [gd(2012, 1, 4), 700],
+                [gd(2012, 1, 5), 500], [gd(2012, 1, 6), 456], [gd(2012, 1, 7), 800], [gd(2012, 1, 8), 589],
+                [gd(2012, 1, 9), 467], [gd(2012, 1, 10), 876], [gd(2012, 1, 11), 689], [gd(2012, 1, 12), 700],
+                [gd(2012, 1, 13), 500], [gd(2012, 1, 14), 600], [gd(2012, 1, 15), 700], [gd(2012, 1, 16), 786],
+                [gd(2012, 1, 17), 345], [gd(2012, 1, 18), 888], [gd(2012, 1, 19), 888], [gd(2012, 1, 20), 888],
+                [gd(2012, 1, 21), 987], [gd(2012, 1, 22), 444], [gd(2012, 1, 23), 999], [gd(2012, 1, 24), 567],
+                [gd(2012, 1, 25), 786], [gd(2012, 1, 26), 666], [gd(2012, 1, 27), 888], [gd(2012, 1, 28), 900],
+                [gd(2012, 1, 29), 178], [gd(2012, 1, 30), 555], [gd(2012, 1, 31), 993]
+            ];
+
+
+            var dataset = [
+                {
+                    label: "Number of orders",
+                    data: data3,
+                    color: "#1ab394",
+                    bars: {
+                        show: true,
+                        align: "center",
+                        barWidth: 24 * 60 * 60 * 600,
+                        lineWidth:0
+                    }
+
+                }, {
+                    label: "Payments",
+                    data: data2,
+                    yaxis: 2,
+                    color: "#1C84C6",
+                    lines: {
+                        lineWidth:1,
+                            show: true,
+                            fill: true,
+                        fillColor: {
+                            colors: [{
+                                opacity: 0.2
+                            }, {
+                                opacity: 0.4
+                            }]
+                        }
+                    },
+                    splines: {
+                        show: false,
+                        tension: 0.6,
+                        lineWidth: 1,
+                        fill: 0.1
+                    },
+                }
+            ];
+
+
+            var options = {
+                xaxis: {
+                    mode: "time",
+                    tickSize: [3, "day"],
+                    tickLength: 0,
+                    axisLabel: "Date",
+                    axisLabelUseCanvas: true,
+                    axisLabelFontSizePixels: 12,
+                    axisLabelFontFamily: 'Arial',
+                    axisLabelPadding: 10,
+                    color: "#d5d5d5"
+                },
+                yaxes: [{
+                    position: "left",
+                    max: 1070,
+                    color: "#d5d5d5",
+                    axisLabelUseCanvas: true,
+                    axisLabelFontSizePixels: 12,
+                    axisLabelFontFamily: 'Arial',
+                    axisLabelPadding: 3
+                }, {
+                    position: "right",
+                    clolor: "#d5d5d5",
+                    axisLabelUseCanvas: true,
+                    axisLabelFontSizePixels: 12,
+                    axisLabelFontFamily: ' Arial',
+                    axisLabelPadding: 67
+                }
+                ],
+                legend: {
+                    noColumns: 1,
+                    labelBoxBorderColor: "#000000",
+                    position: "nw"
+                },
+                grid: {
+                    hoverable: false,
+                    borderWidth: 0
+                }
+            };
+
+            function gd(year, month, day) {
+                return new Date(year, month - 1, day).getTime();
+            }
+
+            var previousPoint = null, previousLabel = null;
+
+            $.plot($("#flot-dashboard-chart"), dataset, options);
+
+            var mapData = {
+                "US": 298,
+                "SA": 200,
+                "DE": 220,
+                "FR": 540,
+                "CN": 120,
+                "AU": 760,
+                "BR": 550,
+                "IN": 200,
+                "GB": 120,
+            };
+
+            $('#world-map').vectorMap({
+                map: 'world_mill_en',
+                backgroundColor: "transparent",
+                regionStyle: {
+                    initial: {
+                        fill: '#e4e4e4',
+                        "fill-opacity": 0.9,
+                        stroke: 'none',
+                        "stroke-width": 0,
+                        "stroke-opacity": 0
+                    }
+                },
+
+                series: {
+                    regions: [{
+                        values: mapData,
+                        scale: ["#1ab394", "#22d6b1"],
+                        normalizeFunction: 'polynomial'
+                    }]
+                },
+            });
+        });
+    </script>
 </body>
 </html>
